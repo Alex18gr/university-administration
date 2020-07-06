@@ -3,7 +3,7 @@
 <!--<hr>-->
 <!--<h1 *ngIf="studentDetails">{{ studentDetails | json }}</h1>-->
 
-<main role="main" class="container">
+<main role="main" class="container" *ngIf="studentDataLoaded">
 
   <div class="card shadow-sm" style="margin-top: 80px; height: 100px">
 
@@ -12,9 +12,9 @@
         <div class="col-md-4" style="margin-top: -40px">
           <div class="card shadow">
             <section class="student-info-container">
-              <span class="first-name-placeholder">Αλέξανδρος Τσιχουρίδης</span>
-              <span class="first-name-placeholder">Εφαρμοσμένη Πληροφορική</span>
-              <span>mai20071</span>
+              <span class="first-name-placeholder">{{studentDetails.name}} {{studentDetails.surname}}</span>
+              <span class="first-name-placeholder">{{studentDetails.departmentName}}</span>
+              <span>{{studentDetails.registryNumber}}</span>
             </section>
           </div>
         </div>
@@ -22,11 +22,11 @@
           <div class="student-details-container">
             <div class="student-details-col-container">
               <div class="student-detail-field">Τρόπος εισαγωγής: <span>Πανελλήνιες</span></div>
-              <div class="student-detail-field">Έτος εισαγωγής: <span>2015</span></div>
+              <div class="student-detail-field">Έτος εισαγωγής: <span>{{studentDetails.enrollDate | date:'yyyy'}}</span></div>
             </div>
             <div class="student-details-col-container">
 
-              <div class="student-detail-field">Τρέχον Εξάμνο: <span>9ο</span></div>
+              <div class="student-detail-field">Τρέχον Εξάμνο: <span>{{studentDetails.semester}}ο</span></div>
             </div>
 
           </div>
@@ -51,7 +51,7 @@
 
               <div class="fast-actions-list">
 
-                <div class="fast-action-list-element">
+                <div class="fast-action-list-element" (click)="navigateTo('student')">
 
                   <div class="action-circle">
                     <div>
