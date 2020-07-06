@@ -1,0 +1,56 @@
+.staff-search-input input {
+  border-top-left-radius: 3em;
+  border-bottom-left-radius: 3em;
+}
+
+.staff-search-input button {
+  border-top-right-radius: 3em;
+  border-bottom-right-radius: 3em;
+}
+
+.filters-header {
+  padding: 0 !important;
+}
+
+.search-results-container {
+  padding: 10px 0;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  border: solid #c9c9c9 1px;
+  border-radius: 5px;
+}
+
+.search-result {
+  border-top: solid #e8e8e8 1px;
+  border-bottom: solid #e8e8e8 1px;
+}
+
+.search-result-info .email {}
+
+.search-result-info .phone {}
+
+.search-result-info .office {
+  color: #ff6666;
+}
+
+.search-result-info .site {}
+
+.search-result:hover {
+  background-color: #d9d9d9;
+  margin-top: -5px;
+}
+
+.search-result .search-result-icon-container {
+  font-size: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+  color: #0099ff;
+}
+
+.search-result .search-result-info {
+  display: flex;
+  flex-direction: column;
+}

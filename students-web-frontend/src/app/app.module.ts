@@ -13,6 +13,8 @@ import { NavbarComponent } from './home/navbar/navbar.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { StudentPageComponent } from './student/student-page/student-page.component';
+import { RequestPageComponent } from './applications/request/request-page/request-page.component';
+import { EmployeeCatalogPageComponent } from './applications/employee-catalog/employee-catalog-page/employee-catalog-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { StudentPageComponent } from './student/student-page/student-page.compon
     MainApplicationComponent,
     NavbarComponent,
     HomePageComponent,
-    StudentPageComponent
+    StudentPageComponent,
+    RequestPageComponent,
+    EmployeeCatalogPageComponent
   ],
   imports: [
     AuthModule.forRoot(),
