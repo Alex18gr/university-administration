@@ -1,0 +1,38 @@
+.semester-select {
+  width: 400px;
+}
+
+.marks-table-top-controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.marks-table-top-buttons {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.user-details-container {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.user-details-container .user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.marks-table {
+  padding: 20px 8px
+}
+
+.marks-section-container {
+  padding: 0 20px;
+}

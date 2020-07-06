@@ -26,7 +26,7 @@ public class StudentController {
 //        KeycloakAuthenticationToken principal = (KeycloakAuthenticationToken) request.getUserPrincipal();
 //        principal.getAccount().getKeycloakSecurityContext().getIdToken().getId();
 
-        return studentService.getCurrentUser();
+        return studentService.getCurrentUser(request);
 
     }
 }

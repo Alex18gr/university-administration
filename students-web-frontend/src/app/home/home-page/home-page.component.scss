@@ -1,0 +1,111 @@
+.student-info-container {
+  height: 100%;
+  background: lightblue;
+  padding: 5px 15px;
+}
+
+.first-name-placeholder {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.student-details-col-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-details-col-container .student-detail-field span {
+  margin: 0 15px;
+  font-weight: 500;
+}
+
+.student-details-container {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.fast-actions-container {
+  padding: 10px;
+  min-height: 400px;
+}
+
+.fast-actions-container .fast-actions-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.fast-actions-container .fast-action-list-element {
+  margin: 3px 0;
+  padding: 7px 40px;
+  display: flex;
+  cursor: pointer;
+}
+
+.fast-actions-container .fast-action-list-element:hover {
+  background: lightgrey;
+}
+
+.fast-actions-container .action-title {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.action-circle {
+  display: inline-flex;
+  background: #6699ff;
+  padding: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 3em;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+}
+
+.action-circle div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.announcements-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.announcements-container .announcement {
+  padding: 10px 10px;
+  border-bottom: solid 1px #e8e8e8;
+}
+
+.announcement .announcement-title {
+  margin-right: auto;
+}
+
+.announcement .announcement-date {
+  float: right;
+  font-style: italic;
+  color: grey
+}
+
+.page-shortcuts-col {
+  padding-left: 0 !important;
+}
+
+.page-announcements-col {
+  padding-right: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .page-shortcuts-col {
+    padding-right: 0 !important;
+  }
+  .page-announcements-col {
+    margin-top: 15px;
+    padding-left: 0 !important;
+  }
+}
