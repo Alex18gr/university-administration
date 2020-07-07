@@ -1,11 +1,11 @@
 package io.alexc.studentsweb.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity @Data
+@Entity @Getter @Setter @RequiredArgsConstructor
 @Table(name = "department")
 public class Department {
 

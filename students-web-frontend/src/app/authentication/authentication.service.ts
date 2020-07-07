@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 import {AuthUserModel} from './models/AuthUserModel';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {StudentDetails} from "../common/models/StudentDetails";
 
 @Injectable({
   providedIn: 'root'
@@ -71,8 +72,8 @@ export class AuthenticationService {
     return this.oidcSecurityService.getToken();
   }
 
-  getCurrentStudentDetails(): Observable<any> {
-    return this.http.get(this.apiUrl + 'students/me');
+  getCurrentStudentDetails(): Observable<StudentDetails> {
+    return this.http.get<StudentDetails>(this.apiUrl + 'students/me');
   }
 }
 

@@ -2,180 +2,47 @@
 
   <div class="card shadow-sm user-details-card">
 
-    <section class="user-details-container">
+    <section class="user-details-container" *ngIf="studentData && !dataLoading">
       <div class="user-details">
-        <h2>Αλέξανδρος Τσιχουρίδης</h2>
-        <h5>Εφαρμοσμένη Πληροφορική</h5>
+        <h2>{{studentData.name}} {{studentData.surname}}</h2>
+        <h5>{{studentData.departmentName}}</h5>
       </div>
       <div class="user-details">
-        <span>Έτος Εισαγωγής: 2015</span>
-        <span>Αριθμός Μηρτόου: mai20071</span>
-        <span>Εξάμηνο: 2ο</span>
+        <span>Έτος Εισαγωγής: {{studentData.enrollDate | date:'yyyy'}}</span>
+        <span>Αριθμός Μηρτόου: {{studentData.registryNumber}}</span>
+        <span>Εξάμηνο: {{studentData.semester}}ο</span>
       </div>
     </section>
 
   </div>
 
-  <div class="alert alert-danger card" role="alert">
-      <span>
-        <fa-icon [icon]="warningSingIcon"></fa-icon> Επείγουσα ειδοποίηση
-      </span>
-    <ul>
-      <li>Ξεκίνησαν οι δηλώσεις του εαρινού εξαμήνου. Προθεσμία υποβολής 10/3</li>
-      <li>Ξεκινούν από Δευτέρα οι δηλώσεις συγγραμάτων στον Εύδοξο</li>
-    </ul>
-  </div>
+<!--  <div class="alert alert-danger card" role="alert">-->
+<!--      <span>-->
+<!--        <fa-icon [icon]="warningSingIcon"></fa-icon> Επείγουσα ειδοποίηση-->
+<!--      </span>-->
+<!--    <ul>-->
+<!--      <li>Ξεκίνησαν οι δηλώσεις του εαρινού εξαμήνου. Προθεσμία υποβολής 10/3</li>-->
+<!--      <li>Ξεκινούν από Δευτέρα οι δηλώσεις συγγραμάτων στον Εύδοξο</li>-->
+<!--    </ul>-->
+<!--  </div>-->
 
   <div class="card shadow-sm">
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Βαθμολογίες</a>
+        <a class="nav-link" [ngClass]="{'active': selectedTab === 'marks'}" (click)="setActiveTab('marks')">Βαθμολογίες</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Δηλώσεις Μαθημάτων</a>
+        <a class="nav-link" [ngClass]="{'active': selectedTab === 'course-registration'}" (click)="setActiveTab('course-registration')">Δηλώσεις Μαθημάτων</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Δηλώσεις Συγγραμάτων</a>
+        <a class="nav-link" [ngClass]="{'active': selectedTab === 'book-registration'}" (click)="setActiveTab('book-registration')">Δηλώσεις Συγγραμάτων</a>
       </li>
     </ul>
 
-    <section class="marks-section-container">
+    <section class="tab-container" [ngSwitch]="selectedTab">
 
-      <div class="container-flud">
-        <div class="row">
-          <div class="col-md-12">
-
-            <section class="marks-table">
-
-              <section class="marks-table-top-controls">
-
-
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <div class="form-group mb-3 semester-select">
-                        <label for="semesterSelect">Εξάμηνο</label>
-                        <select class="custom-select" id="semesterSelect">
-                          <option selected>Όλα</option>
-                          <option value="1">1ο</option>
-                          <option value="2">2ο</option>
-                          <option value="3">3ο</option>
-                          <option value="4">4ο</option>
-                          <option value="5">5ο</option>
-                          <option value="6">6ο</option>
-                          <option value="7">7ο</option>
-                          <option value="8">8ο</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="marks-table-top-buttons">
-                        <div class="btn-group" role="group">
-                          <button type="button" class="btn btn-outline-secondary"><fa-icon [icon]="excelExportIcon"></fa-icon>Εξαγωγή</button>
-                          <button type="button" class="btn btn-outline-secondary"><fa-icon [icon]="downloadIcon"></fa-icon>
-                            Κατέβασμα</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-
-
-
-
-              </section>
-
-
-
-              <table class="table table-sm table-hover">
-                <thead>
-                <tr>
-                  <th scope="col">Κωδικός Μαθήματος</th>
-                  <th scope="col">Όνομα Μαθήματος</th>
-                  <th scope="col">Καθηγητής</th>
-                  <th scope="col">Βαθμολογία</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>ΠΛ-001</td>
-                  <td>Αντικειμενοστραφής Προγραμματισμός</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>7.5</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-003</td>
-                  <td>Δίκτυα Υπολογιστών</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>6.4</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-005</td>
-                  <td>Βάσεις Δεδομένων</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>7.4</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-015</td>
-                  <td>Ασφάλεια Πληροφοριακών Συστημάτων</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>9.2</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-025</td>
-                  <td>Δομές Δεδομένων</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>5.1</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-022</td>
-                  <td>Γλώσσα</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>8.3</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-012</td>
-                  <td>Μαθηματικά</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>6.4</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-012</td>
-                  <td>Εμείς και ο κόσμος</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>8.9</td>
-                </tr>
-                <tr>
-                  <td>ΠΛ-012</td>
-                  <td>Αρχαία Ελληνική Γραμματεία</td>
-                  <td>Παπαδόπουλος</td>
-                  <td>5.5</td>
-                </tr>
-                </tbody>
-              </table>
-
-            </section>
-
-
-
-          </div>
-
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-6">
-            <canvas id="myChart" width="400" height="400"></canvas>
-          </div>
-          <div class="col-md-6">
-            <canvas id="myChart2" width="400" height="400"></canvas>
-          </div>
-        </div>
-      </div>
+      <app-student-marks-page *ngSwitchCase="'marks'"></app-student-marks-page>
 
     </section>
 

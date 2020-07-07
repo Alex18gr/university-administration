@@ -1,11 +1,16 @@
 package io.alexc.studentsweb.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity @Data
+@Entity @Getter
+@Setter
+@RequiredArgsConstructor
 @Table(name = "employee")
 public class Employee {
 

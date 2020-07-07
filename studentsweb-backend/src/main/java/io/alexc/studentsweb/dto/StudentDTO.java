@@ -1,14 +1,14 @@
 package io.alexc.studentsweb.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.Date;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class StudentDTO {
 
     private String registryNumber;

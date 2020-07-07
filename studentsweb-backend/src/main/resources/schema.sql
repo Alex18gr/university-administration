@@ -101,22 +101,23 @@ CREATE TABLE IF NOT EXISTS professor_has_course (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE IF NOT EXISTS course_has_student (
-  id_course INT(11) NOT NULL,
-  student_registry_number VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id_course, student_registry_number),
---   INDEX fk_course_has_student_student1_idx (student_registry_number ASC) VISIBLE,
---   INDEX fk_course_has_student_course1_idx (id_course ASC) VISIBLE,
-  CONSTRAINT fk_course_has_student_course1
-    FOREIGN KEY (id_course)
-    REFERENCES course (id_course)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_course_has_student_student1
-    FOREIGN KEY (student_registry_number)
-    REFERENCES student (registry_number)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE IF NOT EXISTS student_course_registration (
+     id_registration INT(11) NOT NULL AUTO_INCREMENT,
+     id_course INT(11) NOT NULL,
+     student_registry_number VARCHAR(45) NOT NULL,
+     ins_date DATE NULL DEFAULT NULL,
+     mark INT(11) NULL DEFAULT NULL,
+     PRIMARY KEY (id_registration),
+     CONSTRAINT fk_course_has_student_course1
+         FOREIGN KEY (id_course)
+             REFERENCES course (id_course)
+             ON DELETE NO ACTION
+             ON UPDATE NO ACTION,
+     CONSTRAINT fk_course_has_student_student1
+         FOREIGN KEY (student_registry_number)
+             REFERENCES student (registry_number)
+             ON DELETE NO ACTION
+             ON UPDATE NO ACTION);
 
 CREATE TABLE IF NOT EXISTS university_service (
   id_university_service INT(11) NOT NULL,
@@ -143,6 +144,7 @@ CREATE TABLE IF NOT EXISTS student_application (
   id_university_application_type INT(11) NOT NULL,
   student_registry_number VARCHAR(45) NOT NULL,
   application_date DATE NULL DEFAULT NULL,
+  status VARCHAR(45) NULL,
   PRIMARY KEY (id_student_application),
 --   INDEX fk_student_application_university_application_type1_idx (id_university_application_type ASC) VISIBLE,
 --   INDEX fk_student_application_student1_idx (student_registry_number ASC) VISIBLE,

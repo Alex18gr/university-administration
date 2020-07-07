@@ -15,6 +15,9 @@ import { HomePageComponent } from './home/home-page/home-page.component';
 import { StudentPageComponent } from './student/student-page/student-page.component';
 import { RequestPageComponent } from './applications/request/request-page/request-page.component';
 import { EmployeeCatalogPageComponent } from './applications/employee-catalog/employee-catalog-page/employee-catalog-page.component';
+import { StudentMarksPageComponent } from './student/student-marks-page/student-marks-page.component';
+import { StudentCourseRegistrationPageComponent } from './student/student-course-registration-page/student-course-registration-page.component';
+import { StudentBookRegistrationPageComponent } from './student/student-book-registration-page/student-book-registration-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { EmployeeCatalogPageComponent } from './applications/employee-catalog/em
     HomePageComponent,
     StudentPageComponent,
     RequestPageComponent,
-    EmployeeCatalogPageComponent
+    EmployeeCatalogPageComponent,
+    StudentMarksPageComponent,
+    StudentCourseRegistrationPageComponent,
+    StudentBookRegistrationPageComponent
   ],
   imports: [
     AuthModule.forRoot(),

@@ -1,4 +1,6 @@
 .student-info-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background: lightblue;
   padding: 5px 15px;

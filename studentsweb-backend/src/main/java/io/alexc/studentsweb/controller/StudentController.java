@@ -1,5 +1,6 @@
 package io.alexc.studentsweb.controller;
 
+import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 import io.alexc.studentsweb.service.StudentService;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/students")
@@ -26,7 +28,12 @@ public class StudentController {
 //        KeycloakAuthenticationToken principal = (KeycloakAuthenticationToken) request.getUserPrincipal();
 //        principal.getAccount().getKeycloakSecurityContext().getIdToken().getId();
 
-        return studentService.getCurrentUser(request);
+        return studentService.getCurrentUser();
 
+    }
+
+    @RequestMapping(value = "me/course-registrations", method = RequestMethod.GET)
+    public List<StudentCourseRegistrationDTO> getCurrentStudentCourses() {
+        return this.studentService.getCurrentStudentCourseRegistrations();
     }
 }
