@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
 
-      <section class="marks-table">
+      <section class="marks-table" *ngIf="studentData && studentMarks">
 
         <section class="marks-table-top-controls">
 
@@ -12,8 +12,8 @@
               <div class="col-md-8">
                 <div class="form-group mb-3 semester-select">
                   <label for="semesterSelect">Εξάμηνο</label>
-                  <select class="custom-select" id="semesterSelect">
-                    <option selected>Όλα</option>
+                  <select class="custom-select" [value]="selectedSemester" (change)="onSemesterSelectChange($event)" id="semesterSelect">
+                    <option value="0" selected>Όλα</option>
                     <option value="1">1ο</option>
                     <option value="2">2ο</option>
                     <option value="3">3ο</option>
@@ -57,60 +57,66 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>ΠΛ-001</td>
-            <td>Αντικειμενοστραφής Προγραμματισμός</td>
-            <td>Παπαδόπουλος</td>
-            <td>7.5</td>
+          <tr *ngFor="let r of studentMarks">
+            <td>{{ r.registryNumber }}</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.professors[0].surname }}</td>
+            <td>{{ r.mark }}</td>
           </tr>
-          <tr>
-            <td>ΠΛ-003</td>
-            <td>Δίκτυα Υπολογιστών</td>
-            <td>Παπαδόπουλος</td>
-            <td>6.4</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-005</td>
-            <td>Βάσεις Δεδομένων</td>
-            <td>Παπαδόπουλος</td>
-            <td>7.4</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-015</td>
-            <td>Ασφάλεια Πληροφοριακών Συστημάτων</td>
-            <td>Παπαδόπουλος</td>
-            <td>9.2</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-025</td>
-            <td>Δομές Δεδομένων</td>
-            <td>Παπαδόπουλος</td>
-            <td>5.1</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-022</td>
-            <td>Γλώσσα</td>
-            <td>Παπαδόπουλος</td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-012</td>
-            <td>Μαθηματικά</td>
-            <td>Παπαδόπουλος</td>
-            <td>6.4</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-012</td>
-            <td>Εμείς και ο κόσμος</td>
-            <td>Παπαδόπουλος</td>
-            <td>8.9</td>
-          </tr>
-          <tr>
-            <td>ΠΛ-012</td>
-            <td>Αρχαία Ελληνική Γραμματεία</td>
-            <td>Παπαδόπουλος</td>
-            <td>5.5</td>
-          </tr>
+<!--          <tr>-->
+<!--            <td>ΠΛ-001</td>-->
+<!--            <td>Αντικειμενοστραφής Προγραμματισμός</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>7.5</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-003</td>-->
+<!--            <td>Δίκτυα Υπολογιστών</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>6.4</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-005</td>-->
+<!--            <td>Βάσεις Δεδομένων</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>7.4</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-015</td>-->
+<!--            <td>Ασφάλεια Πληροφοριακών Συστημάτων</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>9.2</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-025</td>-->
+<!--            <td>Δομές Δεδομένων</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>5.1</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-022</td>-->
+<!--            <td>Γλώσσα</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>8.3</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-012</td>-->
+<!--            <td>Μαθηματικά</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>6.4</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-012</td>-->
+<!--            <td>Εμείς και ο κόσμος</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>8.9</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>ΠΛ-012</td>-->
+<!--            <td>Αρχαία Ελληνική Γραμματεία</td>-->
+<!--            <td>Παπαδόπουλος</td>-->
+<!--            <td>5.5</td>-->
+<!--          </tr>-->
           </tbody>
         </table>
 

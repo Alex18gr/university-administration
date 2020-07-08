@@ -19,6 +19,7 @@ public class StudentCourseRegistrationDTO {
     @Getter @Setter @RequiredArgsConstructor @AllArgsConstructor
     public static class StudentCourseRegistrationProfessorDTO {
         private String name;
+        private String surname;
         private String email;
         private String title;
         private String url;

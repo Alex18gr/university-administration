@@ -26,7 +26,7 @@
 <!--    </ul>-->
 <!--  </div>-->
 
-  <div class="card shadow-sm">
+  <div class="card shadow-sm" *ngIf="studentData && !dataLoading">
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -42,7 +42,7 @@
 
     <section class="tab-container" [ngSwitch]="selectedTab">
 
-      <app-student-marks-page *ngSwitchCase="'marks'"></app-student-marks-page>
+      <app-student-marks-page *ngSwitchCase="'marks'" [studentData]="studentData"></app-student-marks-page>
 
     </section>
 

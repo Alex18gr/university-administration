@@ -4,6 +4,8 @@ import {AuthenticationService} from "../../authentication/authentication.service
 import * as FaIcons from '@fortawesome/free-solid-svg-icons';
 import {ActivatedRoute, Router} from "@angular/router";
 import {StudentDetails} from "../../common/models/StudentDetails";
+import {StudentService} from "../../common/service/student.service";
+import {Announcement} from "../../common/models/Announcement";
 
 @Component({
   selector: 'app-home-page',
@@ -15,22 +17,44 @@ export class HomePageComponent implements OnInit {
   studentDetails: StudentDetails;
   studentDataLoaded: boolean = false;
 
+  announcements: Announcement[];
+  announcementsLoaded: boolean = false;
+
   studentPageIcon = FaIcons.faAddressCard;
   classWebIcon = FaIcons.faGraduationCap;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private studentService: StudentService) { }
 
   ngOnInit(): void {
+    this.checkUserAuthenticated();
+  }
+
+  checkUserAuthenticated() {
     this.authenticationService.checkAuth().subscribe(isAuthenticated => {
       if (isAuthenticated) {
         this.userData = this.authenticationService.getUserData();
-        this.authenticationService.getCurrentStudentDetails().subscribe(data => {
-          this.studentDetails = data;
-          this.studentDataLoaded = true;
-        });
+        this.loadStudentDetails();
+        this.loadStudentAnnouncements();
       }
+    });
+  }
+
+  loadStudentDetails() {
+    this.studentDataLoaded = false;
+    this.authenticationService.getCurrentStudentDetails().subscribe(data => {
+      this.studentDetails = data;
+      this.studentDataLoaded = true;
+    });
+  }
+
+  loadStudentAnnouncements() {
+    this.announcementsLoaded = false;
+    this.studentService.getStudentNotifications().subscribe(data => {
+      this.announcements = data;
+      this.announcementsLoaded = true;
     });
   }
 

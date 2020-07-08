@@ -5,6 +5,7 @@ import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 import io.alexc.studentsweb.entity.Student;
 import io.alexc.studentsweb.entity.StudentCourseRegistration;
+import io.alexc.studentsweb.repository.StudentCourseRegistrationRepository;
 import io.alexc.studentsweb.repository.StudentRepository;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
@@ -26,10 +27,12 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     private final ModelMapper modelMapper;
+    private final StudentCourseRegistrationRepository studentCourseRegistrationRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository, ModelMapper modelMapper) {
+    public StudentServiceImpl(StudentRepository studentRepository, ModelMapper modelMapper, StudentCourseRegistrationRepository studentCourseRegistrationRepository) {
         this.studentRepository = studentRepository;
         this.modelMapper = modelMapper;
+        this.studentCourseRegistrationRepository = studentCourseRegistrationRepository;
     }
 
     @Override
@@ -52,6 +55,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<StudentCourseRegistrationDTO> getCurrentStudentCourseRegistrationsBySemester(Integer semester) {
+        return studentCourseRegistrationRepository.getByStudentIdAndSemester(getCurrentStudentId(), semester)
+                .stream().map(this::convertCourseRegistrationToDTO).collect(Collectors.toList());
+    }
+
+    @Override
     public String getCurrentStudentId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal principal = (KeycloakPrincipal) authentication.getPrincipal();
@@ -70,7 +79,7 @@ public class StudentServiceImpl implements StudentService {
         courseRegistrationDTO.setMark(courseRegistration.getMark());
         List<StudentCourseRegistrationDTO.StudentCourseRegistrationProfessorDTO> professorDTOS = courseRegistration
                 .getCourse().getProfessors().stream()
-                .map(m -> new StudentCourseRegistrationDTO.StudentCourseRegistrationProfessorDTO(m.getName(), m.getEmail(), m.getTitle(), m.getSiteUrl())).collect(Collectors.toList());
+                .map(m -> new StudentCourseRegistrationDTO.StudentCourseRegistrationProfessorDTO(m.getName(), m.getSurname(), m.getEmail(), m.getTitle(), m.getSiteUrl())).collect(Collectors.toList());
         courseRegistrationDTO.setProfessors(professorDTOS);
         return courseRegistrationDTO;
     }

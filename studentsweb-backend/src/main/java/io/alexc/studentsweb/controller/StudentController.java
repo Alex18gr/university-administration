@@ -9,6 +9,7 @@ import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +37,12 @@ public class StudentController {
     }
 
     @RequestMapping(value = "course-registrations", method = RequestMethod.GET)
-    public List<StudentCourseRegistrationDTO> getCurrentStudentCourses() {
-        return this.studentService.getCurrentStudentCourseRegistrations();
+    public List<StudentCourseRegistrationDTO> getCurrentStudentCourses(@RequestParam(required = false) Integer semester) {
+        if (semester == null || semester < 1 || semester > 8) {
+            return this.studentService.getCurrentStudentCourseRegistrations();
+        } else {
+            return this.studentService.getCurrentStudentCourseRegistrationsBySemester(semester);
+        }
     }
 
     @RequestMapping(value = "announcements", method = RequestMethod.GET)

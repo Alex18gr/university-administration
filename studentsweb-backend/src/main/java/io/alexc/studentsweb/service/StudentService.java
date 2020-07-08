@@ -15,6 +15,8 @@ public interface StudentService {
 
     List<StudentCourseRegistrationDTO> getCurrentStudentCourseRegistrations();
 
+    List<StudentCourseRegistrationDTO> getCurrentStudentCourseRegistrationsBySemester(Integer semester);
+
     String getCurrentStudentId();
 
 }
