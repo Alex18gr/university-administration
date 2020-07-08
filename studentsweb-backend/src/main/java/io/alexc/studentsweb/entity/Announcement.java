@@ -16,6 +16,7 @@ import java.util.Date;
 public class Announcement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_announcement")
     private Integer announcementId;
 

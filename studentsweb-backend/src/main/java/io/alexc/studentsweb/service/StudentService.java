@@ -1,5 +1,6 @@
 package io.alexc.studentsweb.service;
 
+import io.alexc.studentsweb.dto.StudentApplicationDTO;
 import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 
@@ -13,5 +14,7 @@ public interface StudentService {
     StudentDTO getCurrentUser();
 
     List<StudentCourseRegistrationDTO> getCurrentStudentCourseRegistrations();
+
+    String getCurrentStudentId();
 
 }

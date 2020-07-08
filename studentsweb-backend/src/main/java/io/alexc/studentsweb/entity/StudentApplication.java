@@ -1,6 +1,5 @@
 package io.alexc.studentsweb.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -15,11 +14,15 @@ import java.util.Date;
 public class StudentApplication {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_student_application")
     private Integer applicationId;
 
     @Column(name = "notes")
     private String notes;
+
+    @Column(name = "status")
+    private String status;
 
     @ManyToOne
     @JoinColumn(name="id_university_application_type", nullable=false)

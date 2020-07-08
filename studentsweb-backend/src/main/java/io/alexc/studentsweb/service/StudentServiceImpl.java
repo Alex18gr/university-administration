@@ -1,5 +1,6 @@
 package io.alexc.studentsweb.service;
 
+import io.alexc.studentsweb.dto.StudentApplicationDTO;
 import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 import io.alexc.studentsweb.entity.Student;
@@ -50,7 +51,8 @@ public class StudentServiceImpl implements StudentService {
                 .map(this::convertCourseRegistrationToDTO).collect(Collectors.toList());
     }
 
-    private String getCurrentStudentId() {
+    @Override
+    public String getCurrentStudentId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal principal = (KeycloakPrincipal) authentication.getPrincipal();
         return principal.getName();

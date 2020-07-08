@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS employee (
                                                                   ON UPDATE NO ACTION);
 
 CREATE TABLE IF NOT EXISTS announcement (
-  id_announcement INT(11) NOT NULL,
+  id_announcement INT(11) auto_increment NOT NULL,
   id_department INT(11) NOT NULL,
   title VARCHAR(45) NULL DEFAULT NULL,
   content VARCHAR(255) NULL DEFAULT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS university_application_type (
     ON UPDATE NO ACTION);
 
 CREATE TABLE IF NOT EXISTS student_application (
-  id_student_application INT(11) NOT NULL,
+  id_student_application INT(11) auto_increment NOT NULL,
   notes VARCHAR(255) NULL DEFAULT NULL,
   id_university_application_type INT(11) NOT NULL,
   student_registry_number VARCHAR(45) NOT NULL,
