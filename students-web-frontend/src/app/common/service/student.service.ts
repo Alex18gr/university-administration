@@ -4,6 +4,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CourseRegistration} from "../models/CourseRegistration";
 import {Announcement} from "../models/Announcement";
+import {StudentRequest} from "../models/StudentRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class StudentService {
 
   getStudentNotifications(): Observable<Announcement[]> {
     return this.http.get<Announcement[]>(this.apiUrl + 'api/students/me/announcements');
+  }
+
+  getStudentRequests(): Observable<StudentRequest[]> {
+    return this.http.get<StudentRequest[]>(this.apiUrl + 'api/students/me/student-applications');
   }
 }

@@ -7,6 +7,8 @@ import {HomePageComponent} from "./home/home-page/home-page.component";
 import {StudentPageComponent} from "./student/student-page/student-page.component";
 import {RequestPageComponent} from "./applications/request/request-page/request-page.component";
 import {EmployeeCatalogPageComponent} from "./applications/employee-catalog/employee-catalog-page/employee-catalog-page.component";
+import {RequestsTableComponent} from "./applications/request/requests-table/requests-table.component";
+import {RequestFormComponent} from "./applications/request/request-form/request-form.component";
 
 
 const routes: Routes = [
@@ -15,7 +17,10 @@ const routes: Routes = [
       {path: '', component: HomePageComponent, pathMatch: 'full'},
       {path: 'student', component: StudentPageComponent},
       {path: 'apps', children: [
-          {path: 'requests', component: RequestPageComponent},
+          {path: 'requests', component: RequestPageComponent, children: [
+              {path: '', component: RequestsTableComponent, pathMatch: 'full'},
+              {path: 'new-request', component: RequestFormComponent}
+            ]},
           {path: 'catalog', component: EmployeeCatalogPageComponent}
         ]}
     ]}

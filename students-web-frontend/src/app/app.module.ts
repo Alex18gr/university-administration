@@ -18,6 +18,8 @@ import { EmployeeCatalogPageComponent } from './applications/employee-catalog/em
 import { StudentMarksPageComponent } from './student/student-marks-page/student-marks-page.component';
 import { StudentCourseRegistrationPageComponent } from './student/student-course-registration-page/student-course-registration-page.component';
 import { StudentBookRegistrationPageComponent } from './student/student-book-registration-page/student-book-registration-page.component';
+import { RequestFormComponent } from './applications/request/request-form/request-form.component';
+import { RequestsTableComponent } from './applications/request/requests-table/requests-table.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { StudentBookRegistrationPageComponent } from './student/student-book-reg
     EmployeeCatalogPageComponent,
     StudentMarksPageComponent,
     StudentCourseRegistrationPageComponent,
-    StudentBookRegistrationPageComponent
+    StudentBookRegistrationPageComponent,
+    RequestFormComponent,
+    RequestsTableComponent
   ],
   imports: [
     AuthModule.forRoot(),
