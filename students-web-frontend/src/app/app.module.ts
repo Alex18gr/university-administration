@@ -20,6 +20,7 @@ import { StudentCourseRegistrationPageComponent } from './student/student-course
 import { StudentBookRegistrationPageComponent } from './student/student-book-registration-page/student-book-registration-page.component';
 import { RequestFormComponent } from './applications/request/request-form/request-form.component';
 import { RequestsTableComponent } from './applications/request/requests-table/requests-table.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RequestsTableComponent } from './applications/request/requests-table/re
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [
     OidcConfigService,
