@@ -17,7 +17,15 @@
     <tr *ngFor="let r of requests">
       <td>{{ r.applicationId }}</td>
       <td>{{ r.notes }}</td>
-      <td>{{ r.status }}</td>
+      <td>
+        <div [ngSwitch]="r.status">
+
+          <span class="badge badge-info" *ngSwitchCase="'CREATED'">Δημιουργήθηκε</span>
+          <span class="badge badge-warning" *ngSwitchCase="'IN_PROGRESS'">Σε επεξεργασία</span>
+          <span class="badge badge-primary" *ngSwitchCase="'COMPLETED'">Ολοκληρώθηκε</span>
+
+        </div>
+      </td>
       <td>{{ r.applicationTypeName }}</td>
       <td>{{ r.applicationDate | date:'short' }}</td>
     </tr>
