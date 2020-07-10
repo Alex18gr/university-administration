@@ -17,6 +17,7 @@ export class EmployeeCatalogPageComponent implements OnInit {
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
+   
   }
 
   searchFormSubmitted(searchCriteria: any) {

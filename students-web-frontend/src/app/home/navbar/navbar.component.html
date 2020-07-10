@@ -24,15 +24,23 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link notifications-menu-item" href="#">
-          <fa-icon [icon]="notificationIcon"></fa-icon>
-          <span class="badge badge-pill badge-danger notifications-badge">3</span>
-        </a>
-      </li>
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link notifications-menu-item" href="#">-->
+<!--          <fa-icon [icon]="notificationIcon"></fa-icon>-->
+<!--          <span class="badge badge-pill badge-danger notifications-badge">3</span>-->
+<!--        </a>-->
+<!--      </li>-->
       <li class="nav-item dropdown">
-        <a class="nav-link navbar-user-icon" href="#" data-toggle="dropdown">
-          <fa-icon [icon]="userIcon"></fa-icon>
+        <a class="nav-link navbar-user-icon-link" href="#" data-toggle="dropdown" *ngIf="studentsData">
+
+          <div class="navbar-user-data">
+            {{ studentsData.name }} {{ studentsData.surname }}
+          </div>
+
+
+          <div class="navbar-user-icon">
+            <fa-icon [icon]="userIcon"></fa-icon>
+          </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item" href="#">Λογαριασμός</a>

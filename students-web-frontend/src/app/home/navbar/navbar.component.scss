@@ -4,14 +4,23 @@
   margin-right: 5px;
 }
 
-.navbar-user-icon.nav-link {
+.navbar-user-icon-link.nav-link {
   padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  .navbar-user-data {
+    display: inline-block;
+  }
+  .navbar-user-icon {
+    display: inline-block;
+    font-size: 1.3em;
+    margin: 0 0 0 10px;
+  }
 }
 
-.navbar-user-icon {
-  font-size: 1.6em;
-  margin: 0;
-}
+
+
 
 .notifications-menu-item {
   margin-right: 0;
