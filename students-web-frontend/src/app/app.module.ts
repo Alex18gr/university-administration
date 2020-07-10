@@ -21,6 +21,7 @@ import { StudentBookRegistrationPageComponent } from './student/student-book-reg
 import { RequestFormComponent } from './applications/request/request-form/request-form.component';
 import { RequestsTableComponent } from './applications/request/requests-table/requests-table.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { EmployeeCatalogSearchFormComponent } from './applications/employee-catalog/employee-catalog-search-form/employee-catalog-search-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     StudentCourseRegistrationPageComponent,
     StudentBookRegistrationPageComponent,
     RequestFormComponent,
-    RequestsTableComponent
+    RequestsTableComponent,
+    EmployeeCatalogSearchFormComponent
   ],
   imports: [
     AuthModule.forRoot(),

@@ -19,5 +19,6 @@ public class EmployeeDTO {
     private String phone;
     private String siteUrl;
     private String title;
+    private String office;
 
 }

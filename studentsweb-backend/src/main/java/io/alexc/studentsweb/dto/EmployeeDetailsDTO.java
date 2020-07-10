@@ -24,6 +24,7 @@ public class EmployeeDetailsDTO {
     private String phone;
     private String siteUrl;
     private String title;
+    private String office;
     private List<EmployeeCourseDTO> employeeCourses;
     private DepartmentDTO departmentDTO;
 

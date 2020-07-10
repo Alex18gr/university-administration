@@ -42,9 +42,16 @@ public class Employee {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "office")
+    private String office;
+
     @ManyToOne
     @JoinColumn(name = "id_department", nullable = false)
     private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "id_university_service", nullable = false)
+    private UniversityService universityService;
 
     @ManyToMany
     @JoinTable(

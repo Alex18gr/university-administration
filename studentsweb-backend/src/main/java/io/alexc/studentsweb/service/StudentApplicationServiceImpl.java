@@ -38,8 +38,13 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
     }
 
     @Override
-    public List<UniversityServiceDTO> getUniversityServiceApplicationTypes() {
+    public List<UniversityServiceDTO> getAllUniversityServices() {
         return universityServiceRepository.findAll().stream().map(this::convertUniversityServiceToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UniversityServiceDTO> getUniversityServiceApplicationTypes() {
+        return universityServiceRepository.getByApplicationTypesIsNotNull().stream().map(this::convertUniversityServiceToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -69,6 +74,7 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
 
     UniversityServiceDTO convertUniversityServiceToDTO(UniversityService universityService) {
         UniversityServiceDTO universityServiceDTO = new UniversityServiceDTO();
+        universityServiceDTO.setServiceId(universityService.getServiceId());
         universityServiceDTO.setName(universityService.getName());
         universityServiceDTO.setDescription(universityService.getDescription());
         List<UniversityServiceDTO.ServiceApplicationTypeDTO> applicationTypeDTOs = universityService.getApplicationTypes()

@@ -26,25 +26,36 @@ CREATE TABLE IF NOT EXISTS student (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE TABLE IF NOT EXISTS university_service (
+  id_university_service INT(11) NOT NULL,
+  name VARCHAR(45) NULL DEFAULT NULL,
+  description VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (id_university_service));
+
 CREATE TABLE IF NOT EXISTS employee (
-                                                          id_employee VARCHAR(45) NOT NULL,
-                                                          id_user VARCHAR(45) NULL DEFAULT NULL,
-                                                          name VARCHAR(255) NULL DEFAULT NULL,
-                                                          surname VARCHAR(255) NULL DEFAULT NULL,
-                                                          email VARCHAR(255) NULL DEFAULT NULL,
-                                                          phone VARCHAR(45) NULL DEFAULT NULL,
-                                                          site_url VARCHAR(255) NULL DEFAULT NULL,
-                                                          address VARCHAR(255) NULL DEFAULT NULL,
-                                                          title VARCHAR(45) NULL DEFAULT NULL,
-                                                          id_department INT(11) NOT NULL,
-                                                          PRIMARY KEY (id_employee),
---   UNIQUE INDEX id_user_UNIQUE (id_user ASC) VISIBLE,
---   INDEX fk_employee_department1_idx (id_department ASC) VISIBLE,
-                                                          CONSTRAINT fk_employee_department1
-                                                              FOREIGN KEY (id_department)
-                                                                  REFERENCES department (id_department)
-                                                                  ON DELETE NO ACTION
-                                                                  ON UPDATE NO ACTION);
+  id_employee VARCHAR(45) NOT NULL,
+  id_user VARCHAR(45) NULL DEFAULT NULL,
+  name VARCHAR(255) NULL DEFAULT NULL,
+  surname VARCHAR(255) NULL DEFAULT NULL,
+  email VARCHAR(255) NULL DEFAULT NULL,
+  phone VARCHAR(45) NULL DEFAULT NULL,
+  site_url VARCHAR(255) NULL DEFAULT NULL,
+  address VARCHAR(255) NULL DEFAULT NULL,
+  title VARCHAR(45) NULL DEFAULT NULL,
+  office VARCHAR(45) NULL DEFAULT NULL,
+  id_department INT(11) NOT NULL,
+  id_university_service INT(11) NOT NULL,
+  PRIMARY KEY (id_employee),
+  CONSTRAINT fk_employee_department1
+      FOREIGN KEY (id_department)
+          REFERENCES department (id_department)
+          ON DELETE NO ACTION
+          ON UPDATE NO ACTION,
+  CONSTRAINT fk_employee_university_service1
+      FOREIGN KEY (id_university_service)
+          REFERENCES university_service (id_university_service)
+          ON DELETE NO ACTION
+          ON UPDATE NO ACTION);
 
 CREATE TABLE IF NOT EXISTS announcement (
   id_announcement INT(11) auto_increment NOT NULL,
@@ -118,12 +129,6 @@ CREATE TABLE IF NOT EXISTS student_course_registration (
              REFERENCES student (registry_number)
              ON DELETE NO ACTION
              ON UPDATE NO ACTION);
-
-CREATE TABLE IF NOT EXISTS university_service (
-  id_university_service INT(11) NOT NULL,
-  name VARCHAR(45) NULL DEFAULT NULL,
-  description VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (id_university_service));
 
 CREATE TABLE IF NOT EXISTS university_application_type (
   id_university_application_type INT(11) NOT NULL,

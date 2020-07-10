@@ -16,6 +16,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UniversityServiceDTO {
 
+    private Integer serviceId;
     private String name;
     private String description;
     private List<ServiceApplicationTypeDTO> applicationTypes;

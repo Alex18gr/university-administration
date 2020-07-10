@@ -20,6 +20,11 @@ public class UniversityServiceController {
         this.studentApplicationService = studentApplicationService;
     }
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    List<UniversityServiceDTO> getAllUniversityServices() {
+        return studentApplicationService.getAllUniversityServices();
+    }
+
     @RequestMapping(value = "/application-types", method = RequestMethod.GET)
     List<UniversityServiceDTO> getUniversityServices() {
         return studentApplicationService.getUniversityServiceApplicationTypes();

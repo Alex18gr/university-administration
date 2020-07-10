@@ -14,7 +14,7 @@ public class EmployeeSpecifications {
         return new Specification<Employee>() {
             @Override
             public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.like(root.get("name"), "%" + text + "%" );
+                return criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + text.toLowerCase() + "%" );
             }
         };
     }
@@ -23,10 +23,41 @@ public class EmployeeSpecifications {
         return new Specification<Employee>() {
             @Override
             public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.like(root.get("surname"), "%" + text + "%" );
+                return criteriaBuilder.like(criteriaBuilder.lower(root.get("surname")), "%" + text.toLowerCase() + "%" );
             }
         };
     }
+
+    public static Specification<Employee> textInNameOrSurname(String text) {
+        return Specification.where(textInName(text)).or(textInSurname(text));
+    }
+
+    public static Specification<Employee> employeeInDepartment(Integer departmentId) {
+        return new Specification<Employee>() {
+            @Override
+            public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                return criteriaBuilder.equal(root.get("department").get("departmentId"), departmentId);
+            }
+        };
+    }
+
+    public static Specification<Employee> employeeInService(Integer serviceId) {
+        return new Specification<Employee>() {
+            @Override
+            public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                return criteriaBuilder.equal(root.get("universityService").get("serviceId"), serviceId);
+            }
+        };
+    }
+
+//    public static Specification<Employee> nameContainsText(String text) {
+//        return new Specification<Employee>() {
+//            @Override
+//            public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+//                return criteriaBuilder.
+//            }
+//        };
+//    }
 
 
 //    public static Specification<Customer> customerHasBirthday() {

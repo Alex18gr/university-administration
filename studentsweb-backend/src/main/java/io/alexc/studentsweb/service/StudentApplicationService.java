@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface StudentApplicationService {
 
+    List<UniversityServiceDTO> getAllUniversityServices();
+
     List<UniversityServiceDTO> getUniversityServiceApplicationTypes();
 
     List<StudentApplicationDTO> getCurrentStudentApplications();

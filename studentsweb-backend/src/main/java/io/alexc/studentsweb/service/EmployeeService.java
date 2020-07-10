@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    List<EmployeeDTO> searchEmployeeByText(String text);
+    List<EmployeeDTO> searchEmployeeByText(String text, Integer departmentId, Integer serviceId);
 
 }

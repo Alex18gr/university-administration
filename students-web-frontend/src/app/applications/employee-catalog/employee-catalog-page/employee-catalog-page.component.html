@@ -18,58 +18,8 @@
           <section>
 
             <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-12">
 
-                  <div class="input-group mb-3 staff-search-input">
-                    <input type="text" class="form-control staff-search-input"
-                           placeholder="Πληκτρολογήστε για αναζήτηση">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button">
-                        Αναζήτηση <fa-icon [icon]="searchIcon"></fa-icon>
-                      </button>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div id="accordion">
-                    <div class="card">
-                      <div class="card-header filters-header" id="headingOne">
-                        <h5 class="mb-0">
-                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                  aria-expanded="true" aria-controls="collapseOne">
-                            Φίλτρα Αναζήτησης <fa-icon [icon]="filterIcon"></fa-icon>
-                          </button>
-                        </h5>
-                      </div>
-
-                      <div id="collapseOne" class="collapse collapsed">
-                        <div class="card-body">
-
-
-                          <div class="form-group">
-                            <label for="applicationAuthority">Υπηρεσία</label>
-                            <select class="form-control" id="applicationAuthority">
-                              <option>-</option>
-                              <option>Γραμματεία Τμήματος ---</option>
-                              <option>Φοιτητική Μέριμνα</option>
-                              <option>Βιβλιοθήκη</option>
-                              <option>Γραφείο Σπουδών Εξωτερικού</option>
-                            </select>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
-                </div>
-              </div>
-
+              <app-employee-catalog-search-form (formSubmitted)="searchFormSubmitted($event)"></app-employee-catalog-search-form>
 
               <div class="row">
                 <div class="col-md-12">
@@ -78,7 +28,7 @@
 
                   <section class="search-results-container">
 
-                    <div class="search-result">
+                    <div class="search-result" *ngFor="let emp of employeeSearchResults">
 
 
                       <div class="container">
@@ -92,149 +42,149 @@
                           </div>
                           <div class="col-md-5">
                             <div class="search-result-info">
-                              <span>Αλέξανδρος Τσιχουρίδης</span>
-                              <span>Επίκουρος Καθηγητής</span>
-                              <span class="office">Γραφείο 1234</span>
+                              <span>{{ emp.name }} {{ emp.surname }}</span>
+                              <span>{{ emp.title }}</span>
+                              <span class="office">Γραφείο {{ emp.office }}</span>
                             </div>
                           </div>
                           <div class="col-md-5">
                             <div class="search-result-info">
                                 <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>
-                                  alexc@uom.gr</span>
-                              <span class="site"><a href="">www.alexc.gr</a></span>
-                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>
+                                  {{ emp.email }}</span>
+                              <span class="site"><a href="">{{ emp.siteUrl }}</a></span>
+                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> {{ emp.phone }}</span>
                             </div>
                           </div>
                         </div>
                       </div>
 
                     </div>
-                    <div class="search-result">
+<!--                    <div class="search-result">-->
 
 
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-2">
-                            <div class="search-result-icon-container">
+<!--                      <div class="container">-->
+<!--                        <div class="row">-->
+<!--                          <div class="col-md-2">-->
+<!--                            <div class="search-result-icon-container">-->
 
-                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>
+<!--                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>-->
 
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                              <span>Κωνσταντίνος Κατακουζηνός</span>
-                              <span>Επίκουρος Καθηγητής Βυζαντινολογίας</span>
-                              <span class="office">Γραφείο 1234</span>
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>
-                                  katakouzina@uom.gr</span>
-                              <span class="site"><a href="">www.katakouzina.gr</a></span>
-                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310546000</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                              <span>Κωνσταντίνος Κατακουζηνός</span>-->
+<!--                              <span>Επίκουρος Καθηγητής Βυζαντινολογίας</span>-->
+<!--                              <span class="office">Γραφείο 1234</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>-->
+<!--                                  katakouzina@uom.gr</span>-->
+<!--                              <span class="site"><a href="">www.katakouzina.gr</a></span>-->
+<!--                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310546000</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
 
-                    </div>
-
-
-                    <div class="search-result">
+<!--                    </div>-->
 
 
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-2">
-                            <div class="search-result-icon-container">
-
-                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>
-
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                              <span>Αλέξανδρος Τσιχουρίδης</span>
-                              <span>Επίκουρος Καθηγητής</span>
-                              <span class="office">Γραφείο 1234</span>
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>
-                                  alexc@uom.gr</span>
-                              <span class="site"><a href="">www.alexc.gr</a></span>
-                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="search-result">
+<!--                    <div class="search-result">-->
 
 
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-2">
-                            <div class="search-result-icon-container">
+<!--                      <div class="container">-->
+<!--                        <div class="row">-->
+<!--                          <div class="col-md-2">-->
+<!--                            <div class="search-result-icon-container">-->
 
-                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>
+<!--                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>-->
 
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                              <span>Αλέξανδρος Τσιχουρίδης</span>
-                              <span>Επίκουρος Καθηγητής</span>
-                              <span class="office">Γραφείο 1234</span>
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>
-                                  alexc@uom.gr</span>
-                              <span class="site"><a href="">www.alexc.gr</a></span>
-                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                              <span>Αλέξανδρος Τσιχουρίδης</span>-->
+<!--                              <span>Επίκουρος Καθηγητής</span>-->
+<!--                              <span class="office">Γραφείο 1234</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>-->
+<!--                                  alexc@uom.gr</span>-->
+<!--                              <span class="site"><a href="">www.alexc.gr</a></span>-->
+<!--                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
 
-                    </div>
-                    <div class="search-result">
+<!--                    </div>-->
+<!--                    <div class="search-result">-->
 
 
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-2">
-                            <div class="search-result-icon-container">
+<!--                      <div class="container">-->
+<!--                        <div class="row">-->
+<!--                          <div class="col-md-2">-->
+<!--                            <div class="search-result-icon-container">-->
 
-                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>
+<!--                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>-->
 
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                              <span>Αλέξανδρος Τσιχουρίδης</span>
-                              <span>Επίκουρος Καθηγητής</span>
-                              <span class="office">Γραφείο 1234</span>
-                            </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="search-result-info">
-                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>
-                                  alexc@uom.gr</span>
-                              <span class="site"><a href="">www.alexc.gr</a></span>
-                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                              <span>Αλέξανδρος Τσιχουρίδης</span>-->
+<!--                              <span>Επίκουρος Καθηγητής</span>-->
+<!--                              <span class="office">Γραφείο 1234</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>-->
+<!--                                  alexc@uom.gr</span>-->
+<!--                              <span class="site"><a href="">www.alexc.gr</a></span>-->
+<!--                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
 
-                    </div>
+<!--                    </div>-->
+<!--                    <div class="search-result">-->
+
+
+<!--                      <div class="container">-->
+<!--                        <div class="row">-->
+<!--                          <div class="col-md-2">-->
+<!--                            <div class="search-result-icon-container">-->
+
+<!--                              <fa-icon [icon]="userDefaultPictureIcon"></fa-icon>-->
+
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                              <span>Αλέξανδρος Τσιχουρίδης</span>-->
+<!--                              <span>Επίκουρος Καθηγητής</span>-->
+<!--                              <span class="office">Γραφείο 1234</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-md-5">-->
+<!--                            <div class="search-result-info">-->
+<!--                                <span class="email"><fa-icon [icon]="mailIcon"></fa-icon>-->
+<!--                                  alexc@uom.gr</span>-->
+<!--                              <span class="site"><a href="">www.alexc.gr</a></span>-->
+<!--                              <span class="phone"><fa-icon [icon]="phoneIcon"></fa-icon> 2310000000</span>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+<!--                    </div>-->
 
 
                   </section>

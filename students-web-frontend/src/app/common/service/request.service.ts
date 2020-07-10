@@ -12,6 +12,10 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
+  getAllUniversityServices(): Observable<RequestAuthority[]> {
+    return this.http.get<RequestAuthority[]>(this.apiUrl + 'api/university-services');
+  }
+
   getRequestAuthoritiesAndTypes(): Observable<RequestAuthority[]> {
     return this.http.get<RequestAuthority[]>(this.apiUrl + 'api/university-services/application-types');
   }

@@ -24,7 +24,10 @@ public class UniversityService {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy="issuingService")
+    @OneToMany(mappedBy = "issuingService")
     private Set<ApplicationType> applicationTypes;
+
+    @OneToMany(mappedBy = "universityService")
+    private Set<Employee> serviceEmployees;
 
 }
