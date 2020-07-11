@@ -60,7 +60,7 @@ export class RequestFormComponent implements OnInit {
 
   onRequestSubmit() {
     this.submittingForm = true;
-    if (!this.checkFormValid()) {
+    if (this.checkFormValid()) {
       this.requestService.createNewRequest(this.requestForm.getRawValue()).subscribe(data => {
         this.submittingForm = false;
         this.router.navigate(["../"], {relativeTo: this.route});
@@ -75,7 +75,7 @@ export class RequestFormComponent implements OnInit {
   }
 
   checkFormValid(): boolean {
-    return !(this.requestForm.getRawValue().applicationTypeId == null);
+    return this.requestForm.getRawValue().applicationTypeId !== -1;
   }
 
   onFormReset() {
