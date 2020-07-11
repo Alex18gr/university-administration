@@ -3,6 +3,7 @@ import {RequestService} from "../../../common/service/request.service";
 import {RequestAuthority} from "../../../common/models/RequestAuthority";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ToastService} from "../../../common/toast/toast.service";
 
 @Component({
   selector: 'app-request-form',
@@ -20,7 +21,8 @@ export class RequestFormComponent implements OnInit {
 
   constructor(private requestService: RequestService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -35,6 +37,7 @@ export class RequestFormComponent implements OnInit {
       this.requestDataLoading = false;
       this.requestDataLoaded = true;
     }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
       this.requestDataLoading = false;
     })
 
@@ -57,12 +60,22 @@ export class RequestFormComponent implements OnInit {
 
   onRequestSubmit() {
     this.submittingForm = true;
-    this.requestService.createNewRequest(this.requestForm.getRawValue()).subscribe(data => {
-      this.submittingForm = false;
-      this.router.navigate(["../"], {relativeTo: this.route});
-    }, error => {
-      this.submittingForm = false;
-    });
+    if (!this.checkFormValid()) {
+      this.requestService.createNewRequest(this.requestForm.getRawValue()).subscribe(data => {
+        this.submittingForm = false;
+        this.router.navigate(["../"], {relativeTo: this.route});
+      }, error => {
+        this.toastService.addErrorToast('Πρόβλημα Αιτήματος', 'Ένα πρόβλημα προέκυψε κατά την δημιουργία του αιτήματος στον διακομιστή');
+        this.submittingForm = false;
+      });
+    } else {
+      this.toastService.addErrorToast('Πρόβλημα Αίτησης', 'Ο τύπος πιστοποιητικού δε μπορεί να είναι κενός')
+    }
+
+  }
+
+  checkFormValid(): boolean {
+    return !(this.requestForm.getRawValue().applicationTypeId == null);
   }
 
   onFormReset() {

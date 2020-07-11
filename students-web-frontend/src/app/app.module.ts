@@ -22,6 +22,8 @@ import { RequestFormComponent } from './applications/request/request-form/reques
 import { RequestsTableComponent } from './applications/request/requests-table/requests-table.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { EmployeeCatalogSearchFormComponent } from './applications/employee-catalog/employee-catalog-search-form/employee-catalog-search-form.component';
+import {ToastContainerComponent} from "./common/toast/toast-container/toast-container.component";
+import {ToastComponent} from "./common/toast/toast/toast.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { EmployeeCatalogSearchFormComponent } from './applications/employee-cata
     StudentBookRegistrationPageComponent,
     RequestFormComponent,
     RequestsTableComponent,
-    EmployeeCatalogSearchFormComponent
+    EmployeeCatalogSearchFormComponent,
+    ToastContainerComponent,
+    ToastComponent
   ],
   imports: [
     AuthModule.forRoot(),

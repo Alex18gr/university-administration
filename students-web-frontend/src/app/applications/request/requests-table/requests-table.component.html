@@ -1,7 +1,5 @@
 <h1>Υπηρεσία Υποβολής Aιτήσεων</h1>
-
 <hr>
-
 <section class="table-container">
   <table class="table table-sm table-hover" *ngIf="requestsLoaded">
     <thead>
@@ -19,11 +17,9 @@
       <td>{{ r.notes }}</td>
       <td>
         <div [ngSwitch]="r.status">
-
           <span class="badge badge-info" *ngSwitchCase="'CREATED'">Δημιουργήθηκε</span>
           <span class="badge badge-warning" *ngSwitchCase="'IN_PROGRESS'">Σε επεξεργασία</span>
           <span class="badge badge-primary" *ngSwitchCase="'COMPLETED'">Ολοκληρώθηκε</span>
-
         </div>
       </td>
       <td>{{ r.applicationTypeName }}</td>
@@ -34,7 +30,7 @@
 </section>
 
 <section class="buttons-container">
-  <button type="button" class="btn btn-outline-primary" (click)="onNewRequestClicked()">Αίτηση</button>
+  <button type="button" class="btn btn-outline-primary" (click)="onNewRequestClicked()">Νέα Αίτηση</button>
 </section>
 
 

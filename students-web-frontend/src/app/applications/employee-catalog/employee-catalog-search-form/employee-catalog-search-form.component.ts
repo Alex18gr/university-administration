@@ -7,6 +7,7 @@ import {forkJoin} from "rxjs";
 import {RequestService} from "../../../common/service/request.service";
 import {Department} from "../../../common/models/Department";
 import {RequestAuthority} from "../../../common/models/RequestAuthority";
+import {ToastService} from "../../../common/toast/toast.service";
 
 @Component({
   selector: 'app-employee-catalog-search-form',
@@ -26,7 +27,8 @@ export class EmployeeCatalogSearchFormComponent implements OnInit {
 
   constructor(private departmentService: DepartmentService,
               private employeeService: EmployeeService,
-              private requestService: RequestService) { }
+              private requestService: RequestService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.loadFormData();
@@ -61,6 +63,7 @@ export class EmployeeCatalogSearchFormComponent implements OnInit {
       this.loadingData = false;
       this.formDataLoaded = true;
     }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
       this.loadingData = false;
     });
   }

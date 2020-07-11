@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as FaIcons from '@fortawesome/free-solid-svg-icons';
 import {EmployeeService} from "../../../common/service/employee.service";
 import {Employee} from "../../../common/models/Employee";
+import {ToastService} from "../../../common/toast/toast.service";
 
 @Component({
   selector: 'app-employee-catalog-page',
@@ -14,7 +15,8 @@ export class EmployeeCatalogPageComponent implements OnInit {
   phoneIcon = FaIcons.faPhone;
   employeeSearchResults: Employee[] = [];
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
 
@@ -23,6 +25,8 @@ export class EmployeeCatalogPageComponent implements OnInit {
   searchFormSubmitted(searchCriteria: any) {
     this.employeeService.searchEmployeeByCriteria(searchCriteria).subscribe(data => {
       this.employeeSearchResults = data;
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
     });
   }
 }

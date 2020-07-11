@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {AuthUserModel} from "../../authentication/models/AuthUserModel";
+import {ToastService} from "../../common/toast/toast.service";
 
 @Component({
   selector: 'app-main-application',
@@ -11,7 +12,8 @@ export class MainApplicationComponent implements OnInit {
   userData: AuthUserModel;
   studentDetails: any;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.authenticationService.checkAuth().subscribe(isAuthenticated => {
@@ -21,6 +23,8 @@ export class MainApplicationComponent implements OnInit {
           this.studentDetails = data;
         });
       }
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
     });
   }
 

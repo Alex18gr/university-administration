@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as FaIcons from '@fortawesome/free-solid-svg-icons';
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {StudentDetails} from "../../common/models/StudentDetails";
+import {ToastService} from "../../common/toast/toast.service";
 
 @Component({
   selector: 'app-student-page',
@@ -15,7 +16,8 @@ export class StudentPageComponent implements OnInit {
   studentData: StudentDetails;
   dataLoading: boolean = true;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.loadUserData();
@@ -25,6 +27,9 @@ export class StudentPageComponent implements OnInit {
     this.dataLoading = true;
     this.authenticationService.getCurrentStudentDetails().subscribe((data: StudentDetails) => {
       this.studentData = data;
+      this.dataLoading = false;
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
       this.dataLoading = false;
     });
   }

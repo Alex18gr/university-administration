@@ -3,6 +3,7 @@ import * as FaIcons from '@fortawesome/free-solid-svg-icons';
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StudentDetails} from "../../common/models/StudentDetails";
+import {ToastService} from "../../common/toast/toast.service";
 
 @Component({
   selector: 'app-navbar',
@@ -15,11 +16,14 @@ export class NavbarComponent implements OnInit {
   userIcon = FaIcons.faUserCircle;
   studentsData: StudentDetails;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.authenticationService.getCurrentStudentDetails().subscribe((data: StudentDetails) => {
       this.studentsData = data;
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
     });
   }
 

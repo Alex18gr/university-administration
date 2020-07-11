@@ -8,6 +8,7 @@ import {forkJoin} from "rxjs";
 import {StudentSemesterAverageMark} from "../../common/models/StudentSemesterAverageMark";
 import {StudentChartService} from "../../common/service/student-chart.service";
 import {SheetExportService} from "../../common/service/sheet-export.service";
+import {ToastService} from "../../common/toast/toast.service";
 
 @Component({
   selector: 'app-student-marks-page',
@@ -31,7 +32,8 @@ export class StudentMarksPageComponent implements OnInit {
 
   constructor(private studentService: StudentService,
               private studentChartService: StudentChartService,
-              private sheetExportService: SheetExportService) { }
+              private sheetExportService: SheetExportService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.initializeUserData();
@@ -53,6 +55,9 @@ export class StudentMarksPageComponent implements OnInit {
       this.studentAverageMarks = data.studentAverageMarks;
       this.createMarksChart();
       this.createAverageSemesterMarksChart();
+      this.loadingData = false;
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
       this.loadingData = false;
     });
   }

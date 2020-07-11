@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {StudentDetails} from "../../common/models/StudentDetails";
 import {StudentService} from "../../common/service/student.service";
 import {Announcement} from "../../common/models/Announcement";
+import {ToastService} from "../../common/toast/toast.service";
 
 @Component({
   selector: 'app-home-page',
@@ -26,7 +27,8 @@ export class HomePageComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
               private route: ActivatedRoute,
-              private studentService: StudentService) { }
+              private studentService: StudentService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.checkUserAuthenticated();
@@ -47,6 +49,8 @@ export class HomePageComponent implements OnInit {
     this.authenticationService.getCurrentStudentDetails().subscribe(data => {
       this.studentDetails = data;
       this.studentDataLoaded = true;
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
     });
   }
 
@@ -55,6 +59,8 @@ export class HomePageComponent implements OnInit {
     this.studentService.getStudentNotifications().subscribe(data => {
       this.announcements = data;
       this.announcementsLoaded = true;
+    }, error => {
+      this.toastService.addErrorToast('Πρόβλημα Φόρτωσης Δεδομένων', 'Ένα πρόβλημα προέκυψε κατά την φόρτωση δεδομένων από τον διακομιστή');
     });
   }
 

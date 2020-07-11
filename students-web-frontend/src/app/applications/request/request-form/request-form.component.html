@@ -17,10 +17,6 @@
       <label for="applicationAuthority">Υπηρεσία Χορήγησης</label>
       <select class="form-control" id="applicationAuthority" [value]="0" (change)="selectedRequestAUthorityChenged($event)">
         <option *ngFor="let a of requestAuthorities; index as i" [value]="i">{{ a.name }}</option>
-<!--        <option>Γραμματεία Τμήματος Εφαρμοσμένης Πληροφορικής</option>-->
-<!--        <option>Φοιτητική Μέριμνα</option>-->
-<!--        <option>Βιβλιοθήκη</option>-->
-<!--        <option>Γραφείο Σπουδών Εξωτερικού</option>-->
       </select>
     </div>
 
@@ -29,15 +25,6 @@
       <select class="form-control" id="applicationType" formControlName="applicationTypeId">
         <option value="-1">-</option>
         <option *ngFor="let rt of selectedRequestAuthority.applicationTypes" [value]="rt.applicationTypeId">{{ rt.name }}</option>
-<!--        <option>Βεβαίωση Σπουδών</option>-->
-<!--        <option>Αναλυτική Κατάσταση Βαθμολογίας</option>-->
-<!--        <option>Αντίγραφο Πτυχίου</option>-->
-<!--        <option>Βεβαίωση στέγασης από φοιτιτηκές εστίες Καλαμαριάς</option>-->
-<!--        <option>Χορήγηση Πτυχίου λόγω ύψους</option>-->
-<!--        <option>Χορήγηση Πτυχίου λόγω πολλών ορών τίτσου στο φουαγιέ</option>-->
-<!--        <option>Χορήγηση Πτυχίου λόγω βαρεμάρας</option>-->
-<!--        <option>Χορήγηση Πτυχίου λόγω ομορφιάς</option>-->
-<!--        <option>Χορήγηση Πτυχίου γιατί φτάνει 10 χρόνια πάνε πάρε πτυχίο επιτέλους</option>-->
       </select>
     </div>
 
@@ -46,7 +33,7 @@
       <textarea class="form-control" id="notes" rows="3" formControlName="notes"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-secondary" (click)="onFormReset()">Επαναφορά Φόρμας</button>
+    <button type="submit" class="btn btn-secondary mr-2" (click)="onFormReset()">Επαναφορά Φόρμας</button>
     <button type="submit" class="btn btn-primary" (click)="onRequestSubmit()">Υποβολή Αίτησης</button>
   </form>
 </section>
