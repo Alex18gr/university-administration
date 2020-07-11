@@ -1,6 +1,7 @@
 package io.alexc.studentsweb.controller;
 
 import io.alexc.studentsweb.dto.AnnouncementDTO;
+import io.alexc.studentsweb.dto.StudentApplicationSemesterAvgMarksDTO;
 import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 import io.alexc.studentsweb.service.AnnouncementService;
@@ -43,6 +44,11 @@ public class StudentController {
         } else {
             return this.studentService.getCurrentStudentCourseRegistrationsBySemester(semester);
         }
+    }
+
+    @RequestMapping(value = "course-registrations/semester-average", method = RequestMethod.GET)
+    public List<StudentApplicationSemesterAvgMarksDTO> getCurrentStudentMarksAverageBySemester() {
+        return studentService.getCurrentStudentMarksAverageBySemester();
     }
 
     @RequestMapping(value = "announcements", method = RequestMethod.GET)

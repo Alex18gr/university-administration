@@ -56,6 +56,7 @@ export class EmployeeCatalogSearchFormComponent implements OnInit {
       this.departments = data.departments;
       this.universityServices = data.universityServices;
       this.initializeForm();
+      this.submitSearchForm();
 
       this.loadingData = false;
       this.formDataLoaded = true;

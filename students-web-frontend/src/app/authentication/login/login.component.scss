@@ -47,3 +47,21 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.login-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: center;
+  .login-components-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.graduation-icon {
+  font-size: 10em;
+  color: #113047;
+}

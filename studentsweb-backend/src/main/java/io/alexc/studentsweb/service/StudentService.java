@@ -1,6 +1,7 @@
 package io.alexc.studentsweb.service;
 
 import io.alexc.studentsweb.dto.StudentApplicationDTO;
+import io.alexc.studentsweb.dto.StudentApplicationSemesterAvgMarksDTO;
 import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 
@@ -18,5 +19,7 @@ public interface StudentService {
     List<StudentCourseRegistrationDTO> getCurrentStudentCourseRegistrationsBySemester(Integer semester);
 
     String getCurrentStudentId();
+
+    List<StudentApplicationSemesterAvgMarksDTO> getCurrentStudentMarksAverageBySemester();
 
 }

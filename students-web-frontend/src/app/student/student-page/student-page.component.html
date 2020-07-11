@@ -16,16 +16,6 @@
 
   </div>
 
-<!--  <div class="alert alert-danger card" role="alert">-->
-<!--      <span>-->
-<!--        <fa-icon [icon]="warningSingIcon"></fa-icon> Επείγουσα ειδοποίηση-->
-<!--      </span>-->
-<!--    <ul>-->
-<!--      <li>Ξεκίνησαν οι δηλώσεις του εαρινού εξαμήνου. Προθεσμία υποβολής 10/3</li>-->
-<!--      <li>Ξεκινούν από Δευτέρα οι δηλώσεις συγγραμάτων στον Εύδοξο</li>-->
-<!--    </ul>-->
-<!--  </div>-->
-
   <div class="card shadow-sm" *ngIf="studentData && !dataLoading">
 
     <ul class="nav nav-tabs">
@@ -43,6 +33,10 @@
     <section class="tab-container" [ngSwitch]="selectedTab">
 
       <app-student-marks-page *ngSwitchCase="'marks'" [studentData]="studentData"></app-student-marks-page>
+
+      <app-student-book-registration-page *ngSwitchCase="'course-registration'"></app-student-book-registration-page>
+
+      <app-student-course-registration-page *ngSwitchCase="'book-registration'"></app-student-course-registration-page>
 
     </section>
 

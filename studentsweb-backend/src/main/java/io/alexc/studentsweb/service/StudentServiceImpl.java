@@ -1,6 +1,7 @@
 package io.alexc.studentsweb.service;
 
 import io.alexc.studentsweb.dto.StudentApplicationDTO;
+import io.alexc.studentsweb.dto.StudentApplicationSemesterAvgMarksDTO;
 import io.alexc.studentsweb.dto.StudentCourseRegistrationDTO;
 import io.alexc.studentsweb.dto.StudentDTO;
 import io.alexc.studentsweb.entity.Student;
@@ -65,6 +66,11 @@ public class StudentServiceImpl implements StudentService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal principal = (KeycloakPrincipal) authentication.getPrincipal();
         return principal.getName();
+    }
+
+    @Override
+    public List<StudentApplicationSemesterAvgMarksDTO> getCurrentStudentMarksAverageBySemester() {
+        return studentCourseRegistrationRepository.getAverageStudentMarks(getCurrentStudentId());
     }
 
     private StudentDTO convertStudentToDto(Student student) {
